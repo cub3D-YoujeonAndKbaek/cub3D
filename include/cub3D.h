@@ -11,25 +11,32 @@
 # include "../libft/include/libft.h"
 # include "../minilibx_opengl_20191021/mlx.h"
 
-#define TILE_SIZE 30
-#define MINI_SCALE 0.25
-#define MAP_NUM_COLS 30
-#define MAP_NUM_ROWS 30
 
-#define WINDOW_WIDTH (MAP_NUM_COLS * TILE_SIZE)
-#define WINDOW_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
+typedef struct s_range
+{
+	int		r;
+	int		g;
+	int		b;
+
+}			t_range;
+
 
 typedef struct s_map
 {
-	int			width;
-	int			height;
-	int			mcount;
-	int			ret;
-	int			p;
-	int			c;
-	int			e;
-	char		**arr;
+	char		*no_path;
+	char		*so_path;
+	char		*we_path;
+	char		*ea_path;
 
+	int		floor;
+	int		celling;	
+
+	char		**map;
+	
+	// int			width;
+	// int			height;
+	// int			mcount;
+	int			ret;
 }				t_map;
 
 
@@ -38,7 +45,6 @@ typedef struct    s_mlx
     void        *mlx;
     void        *win;
 	t_map		map;
-
 }                t_mlx;
  
 typedef struct    s_img
@@ -56,10 +62,10 @@ int 	main(int argc, char **argv);
 void	ft_exit(char *ms);
 
 //ft_parse.c
-void	ft_map_parsing(char *file_name, t_map *map);
+void	map_parsing(char *file_name, t_map *map);
 
 
 //ft_initialization.c
-void	ft_initialization_map(t_map	*map);
+void	initialization_map(t_map	*map);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:57:48 by kbaek             #+#    #+#              #
-#    Updated: 2022/07/01 17:57:28 by kbaek            ###   ########.fr        #
+#    Updated: 2022/07/04 18:02:42 by kbaek            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ INCS	= -I include
 MLX_FLAGS	= -L./mlx -lmlx -framework OpenGL -framework Appkit
 
 SRCS	= main.c \
+			ft_parse.c \
+			ft_initialization.c \
 
 
 ALLSRCS	= $(addprefix $(SRCS_DIR), $(SRCS))

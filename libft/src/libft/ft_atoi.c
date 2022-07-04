@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 13:02:01 by kbaek             #+#    #+#             */
-/*   Updated: 2021/09/19 17:03:03 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/04 21:12:43 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_atoi(const char *str)
 		if (mul * min > 2147483647)
 			return (-1);
 		else if (mul * min < -2147483648)
-			return (0);
+			return (-1);
 		else
 			mul = mul * 10 + (*str - '0');
 		str++;
