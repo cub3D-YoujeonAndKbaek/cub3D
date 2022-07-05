@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   cub3D.h											:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: kbaek <kbaek@student.42.fr>				+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2022/07/05 21:39:28 by kbaek			 #+#	#+#			 */
+/*   Updated: 2022/07/05 21:41:45 by kbaek			###   ########.fr	   */
+/*																			*/
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -11,10 +22,10 @@
 # include "../libft/include/libft.h"
 # include "../minilibx_opengl_20191021/mlx.h"
 
-#define E 1
-#define W 2
-#define S 3
-#define N 4
+# define E 1
+# define W 2
+# define S 3
+# define N 4
 
 typedef struct s_range
 {
@@ -41,7 +52,7 @@ typedef struct s_map
 	int			floor;
 	int			celling;
 	char		**map;
-	
+
 	int			width;
 	int			height;
 	int			mcount;
@@ -50,31 +61,28 @@ typedef struct s_map
 	t_player	player;
 }				t_map;
 
-
-typedef struct    s_mlx
+typedef struct s_mlx
 {
-    void        *mlx;
-    void        *win;
+	void		*mlx;
+	void		*win;
 	t_map		map;
-}                t_mlx;
- 
-typedef struct    s_img
-{
-    void		*img;
-    int         *data;
-    int         bpp;
-    int         line_size;
-    int         endian;
-}                t_img;
+}			t_mlx;
 
+typedef struct s_img
+{
+	void		*img;
+	int			*data;
+	int			bpp;
+	int			line_size;
+	int			endian;
+}			t_img;
 
 //main.c
-int 	main(int argc, char **argv);
+int		main(int argc, char **argv);
 void	ft_exit(char *ms);
 
 //ft_initialization.c
 void	initialization_map(t_map	*map);
-
 
 //ft_parse.c
 void	file_parsing(char *file_name, t_map *map);

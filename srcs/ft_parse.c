@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 21:43:42 by kbaek             #+#    #+#             */
+/*   Updated: 2022/07/05 21:51:57 by kbaek            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int		direction_deep_cheak(t_map *map, char *line, char **tmp)
+int	direction_deep_cheak(t_map *map, char *line, char **tmp)
 {
+	int	fd;
+
 	line += 2;
 	while (ft_isspace(*line))
 		line++;
-	int fd;
 	fd = open(line, O_RDONLY);
 	if (fd == -1)
 		ft_exit("texture errer");
@@ -16,8 +28,7 @@ int		direction_deep_cheak(t_map *map, char *line, char **tmp)
 
 void	direction_check(t_map *map, char *line, char c)
 {
-
-	char *tmp;
+	char	*tmp;
 
 	if (c == 'N')
 	{
@@ -43,18 +54,18 @@ void	direction_check(t_map *map, char *line, char c)
 
 void	range_number_check(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!ft_isdigit(*line))
 		ft_exit("rgb digit error");
-	while(*line)
+	while (*line)
 	{
 		if (*line == ',')
 		{
 			i++;
 			line++;
-			while(ft_isspace(*line))
+			while (ft_isspace(*line))
 				line++;
 		}
 		if (!ft_isdigit(*line))
@@ -65,10 +76,10 @@ void	range_number_check(char *line)
 		ft_exit("range error");
 }
 
-int set_rgb(char **line)
+int	set_rgb(char **line)
 {
-	int rt;
-	int i;
+	int	rt;
+	int	i;
 
 	rt = ft_atoi(*line);
 	i = 1;
@@ -77,14 +88,15 @@ int set_rgb(char **line)
 		(*line)++;
 		i *= 10;
 	}
-	while((**line) && (!ft_strncmp(",", (*line), ft_strlen(*line)) || ft_isspace(**line)))
+	while ((**line) && (!ft_strncmp(",", (*line), ft_strlen(*line))
+			|| ft_isspace(**line)))
 		(*line)++;
 	return (rt);
 }
 
 void	color_check(t_map *map, char *line, char c)
 {
-	t_range rgb;
+	t_range	rgb;
 
 	line += 2;
 	while (ft_isspace(*line))
@@ -106,7 +118,7 @@ void	color_check(t_map *map, char *line, char c)
 	}
 }
 
-int		set_player_dir(char c)
+int	set_player_dir(char c)
 {
 	if (c == 'W')
 		return (W);
@@ -122,18 +134,20 @@ int		set_player_dir(char c)
 void	map_check(t_map *map, char *line)
 {
 	int		i;
+	char	c;
 
 	i = 0;
 	while (line[i])
 	{
-		if (!(line[i] == ' ') && line[i] != '0' && line[i] != '1' && line[i] != 'W'
-			&& line[i] != 'N' && line[i] != 'S' && line[i] != 'E')
+		c = line[i];
+		if (!(c == ' ') && c != '0' && c != '1' && c != 'W'
+			&& c != 'N' && c != 'S' && c != 'E')
 			ft_exit("map argv error");
-		else if (line[i] == 'W' || line[i] == 'N' || line[i] == 'S' || line[i] == 'E')
+		else if (c == 'W' || c == 'N' || c == 'S' || c == 'E')
 		{
 			if (map->player.status != 0)
 				ft_exit("its more than one player error");
-			map->player.status = set_player_dir(line[i]);
+			map->player.status = set_player_dir(c);
 		}
 		i++;
 	}
@@ -145,9 +159,9 @@ void	map_check(t_map *map, char *line)
 
 void	file_check(t_map *map, char *line)
 {
-	int i;
+	int	i;
 
-	if (!ft_strncmp("NO ", line, 3) || !ft_strncmp("SO ", line, 3) 
+	if (!ft_strncmp("NO ", line, 3) || !ft_strncmp("SO ", line, 3)
 		|| !ft_strncmp("WE ", line, 3) || !ft_strncmp("EA ", line, 3))
 		direction_check(map, line, line[0]);
 	else if (!ft_strncmp("F ", line, 2) || !ft_strncmp("C ", line, 2))
@@ -157,15 +171,14 @@ void	file_check(t_map *map, char *line)
 		i++;
 	if (line[i] == '0' || line[i] == '1')
 	{
-		if (!map->no_path || !map->so_path || !map->we_path || !map->ea_path 
+		if (!map->no_path || !map->so_path || !map->we_path || !map->ea_path
 			|| (map->floor == -1) || (map->celling == -1))
 			ft_exit("something missing or file order is worng");
 		map_check(map, line);
 	}
 }
 
-
-void file_parsing(char *file_name, t_map *map)
+void	file_parsing(char *file_name, t_map *map)
 {
 	char	*line;
 	int		fd;
@@ -189,5 +202,4 @@ void file_parsing(char *file_name, t_map *map)
 	close (fd);
 	map->ret = 1;
 	//ft_fill_map(line, map, file_name);
-
 }

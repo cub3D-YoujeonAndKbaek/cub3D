@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 21:43:49 by kbaek             #+#    #+#             */
+/*   Updated: 2022/07/05 21:44:31 by kbaek            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3D.h"
 
 void	ft_exit(char *ms)
@@ -31,8 +43,7 @@ int	file_name_check(char *fn)
 		return (0);
 }
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 

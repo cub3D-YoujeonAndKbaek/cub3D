@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_map_dup.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 21:43:40 by kbaek             #+#    #+#             */
+/*   Updated: 2022/07/05 22:03:44 by kbaek            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3D.h"
 
 void	surround_wall_check(t_map *map, char **str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (str[i])
@@ -30,8 +42,8 @@ void	surround_wall_check(t_map *map, char **str)
 
 void	set_player_pos(t_map *map, char **str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (str[i])
@@ -39,7 +51,7 @@ void	set_player_pos(t_map *map, char **str)
 		j = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] == 'W' || str[i][j] == 'E' || str[i][j] == 'S' 
+			if (str[i][j] == 'W' || str[i][j] == 'E' || str[i][j] == 'S'
 				|| str[i][j] == 'N')
 			{
 				map->player.y = i;
@@ -51,22 +63,11 @@ void	set_player_pos(t_map *map, char **str)
 	}
 }
 
-void	map_dub(char *file_name, t_map *map)
+void	map_gnl_forward(int fd, t_map *map)
 {
-	// 25줄 리팩토링
-	char	**tmp;
-	char	*str;
-	char	*line;
-	int		fd;
 	int		i;
+	char	*line;
 
-	map->height = map->mcount - map->start;
-	tmp = (char **)malloc(sizeof(char *) * (map->height + 2));
-	if (!tmp)
-		ft_exit("map_dup malloc error");
-	fd = open(file_name, O_RDONLY);
-	if (fd == -1)
-		ft_exit("map_dip open error");
 	i = 0;
 	while (i < map->start - 1)
 	{
@@ -77,6 +78,14 @@ void	map_dub(char *file_name, t_map *map)
 		line = NULL;
 		i++;
 	}
+}
+
+void	map_set_str(int fd, t_map *map, char **tmp)
+{
+	int		i;
+	char	*line;
+	char	*str;
+
 	i = 0;
 	while (i < map->height + 1)
 	{
@@ -94,6 +103,22 @@ void	map_dub(char *file_name, t_map *map)
 		line = NULL;
 		i++;
 	}
+}
+
+void	map_dub(char *file_name, t_map *map)
+{
+	char	**tmp;
+	int		fd;
+
+	map->height = map->mcount - map->start;
+	tmp = (char **)malloc(sizeof(char *) * (map->height + 2));
+	if (!tmp)
+		ft_exit("map_dup malloc error");
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		ft_exit("map_dip open error");
+	map_gnl_forward(fd, map);
+	map_set_str(fd, map, tmp);
 	tmp[map->height + 1] = 0;
 	map->map = tmp;
 	surround_wall_check(map, map->map);
