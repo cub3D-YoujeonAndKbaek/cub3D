@@ -79,5 +79,10 @@ void	initialization_map(t_map	*map);
 //ft_parse.c
 void	file_parsing(char *file_name, t_map *map);
 
+//ft_print.c
+void	print_struct(t_map *map);
+
+//ft_map_dup.c
+void	map_dub(char *file_name, t_map *map);
 
 #endif

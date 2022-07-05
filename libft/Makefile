@@ -6,14 +6,14 @@
 #    By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/07 13:53:09 by kbaek             #+#    #+#              #
-#    Updated: 2022/07/05 16:07:27 by kbaek            ###   ########.fr        #
+#    Updated: 2022/07/05 20:59:28 by kbaek            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lib_k.a
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 AR = ar -rcs
 RM = rm -f
 
@@ -34,6 +34,7 @@ LIBFT_SRCS = ft_bzero.c \
 		ft_strncmp.c \
 		ft_strnstr.c \
 		ft_strrchr.c \
+		ft_strcpy.c \
 		ft_atoi.c \
 		ft_isspace.c \
 		ft_isalpha.c \

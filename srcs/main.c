@@ -47,5 +47,5 @@ int main(int argc, char **argv)
 	}
 	else
 		ft_exit("you should check argvs\n");
-
+	// system("leaks cu3D > leak.txt");
 }

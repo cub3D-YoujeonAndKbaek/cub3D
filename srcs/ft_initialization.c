@@ -12,6 +12,7 @@ void	initialization_map(t_map	*map)
 	map->map = NULL;
 
 	map->height = 0;
+	map->width = 0;
 	map->mcount = 0;
 	map->start = 0;
 	map->ret = 1;
