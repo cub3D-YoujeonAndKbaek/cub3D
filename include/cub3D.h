@@ -11,6 +11,10 @@
 # include "../libft/include/libft.h"
 # include "../minilibx_opengl_20191021/mlx.h"
 
+#define E 1
+#define W 2
+#define S 3
+#define N 4
 
 typedef struct s_range
 {
@@ -20,6 +24,12 @@ typedef struct s_range
 
 }			t_range;
 
+typedef struct s_player
+{
+	int			x;
+	int			y;
+	int			status;
+}				t_player;
 
 typedef struct s_map
 {
@@ -28,15 +38,16 @@ typedef struct s_map
 	char		*we_path;
 	char		*ea_path;
 
-	int		floor;
-	int		celling;	
-
+	int			floor;
+	int			celling;
 	char		**map;
 	
-	// int			width;
-	// int			height;
-	// int			mcount;
+	int			width;
+	int			height;
+	int			mcount;
+	int			start;
 	int			ret;
+	t_player	player;
 }				t_map;
 
 
@@ -61,11 +72,12 @@ typedef struct    s_img
 int 	main(int argc, char **argv);
 void	ft_exit(char *ms);
 
-//ft_parse.c
-void	map_parsing(char *file_name, t_map *map);
-
-
 //ft_initialization.c
 void	initialization_map(t_map	*map);
+
+
+//ft_parse.c
+void	file_parsing(char *file_name, t_map *map);
+
 
 #endif

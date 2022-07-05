@@ -6,7 +6,7 @@
 #    By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/07 13:53:09 by kbaek             #+#    #+#              #
-#    Updated: 2021/09/19 17:36:19 by kbaek            ###   ########.fr        #
+#    Updated: 2022/07/05 16:07:27 by kbaek            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ LIBFT_SRCS = ft_bzero.c \
 		ft_strnstr.c \
 		ft_strrchr.c \
 		ft_atoi.c \
+		ft_isspace.c \
 		ft_isalpha.c \
 		ft_isdigit.c \
 		ft_isalnum.c \

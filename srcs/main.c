@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 
 	if (argc == 2 && file_name_check(argv[1]))
 	{
-		map_parsing(argv[1], &mlx.map);
+		file_parsing(argv[1], &mlx.map);
 		// ft_start_game(&mlx);
 		// mlx_hook(mlx.mlx_win, 2, 0, &key_function, &mlx);
 		// mlx_hook(mlx.mlx_win, 17, 0, &exit_game, &mlx);
