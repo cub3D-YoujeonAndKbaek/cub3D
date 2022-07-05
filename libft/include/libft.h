@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 15:03:53 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/05 16:19:06 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/05 19:41:39 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strnstr(const char *haystack, const char *needle,
 						size_t len);
 char				*ft_strrchr(const char *s, int c);
+size_t				ft_strcpy(char *dst, const char *src);
 
 int					ft_tolower(int c);
 int					ft_toupper(int c);

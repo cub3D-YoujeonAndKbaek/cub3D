@@ -1,20 +1,6 @@
 
 #include "../include/cub3D.h"
 
-void	print_struct(t_map *map)
-{
-	printf("no_path %s\n", map->no_path);
-	printf("so_path %s\n", map->so_path);
-	printf("we_path %s\n", map->we_path);
-	printf("ea_path %s\n", map->ea_path);
-
-	printf("map->floor %x\n", map->floor);
-	printf("map->celling %x\n", map->celling);
-
-	printf("map start point %d\n", map->start);
-}
-
-
 int		direction_deep_cheak(t_map *map, char *line, char **tmp)
 {
 	line += 2;
@@ -91,8 +77,7 @@ int set_rgb(char **line)
 		(*line)++;
 		i *= 10;
 	}
-	(*line)++;
-	while(!ft_strncmp(",", (*line), ft_strlen(*line)) || ft_isspace(**line))
+	while((**line) && (!ft_strncmp(",", (*line), ft_strlen(*line)) || ft_isspace(**line)))
 		(*line)++;
 	return (rt);
 }
@@ -141,7 +126,7 @@ void	map_check(t_map *map, char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (!ft_isspace(line[i]) && line[i] != '0' && line[i] != '1' && line[i] != 'W'
+		if (!(line[i] == ' ') && line[i] != '0' && line[i] != '1' && line[i] != 'W'
 			&& line[i] != 'N' && line[i] != 'S' && line[i] != 'E')
 			ft_exit("map argv error");
 		else if (line[i] == 'W' || line[i] == 'N' || line[i] == 'S' || line[i] == 'E')
@@ -152,9 +137,10 @@ void	map_check(t_map *map, char *line)
 		}
 		i++;
 	}
+	if (map->width < i)
+		map->width = i;
 	if (map->start == 0)
 		map->start = map->mcount;
-	map->height += 1;
 }
 
 void	file_check(t_map *map, char *line)
@@ -178,10 +164,6 @@ void	file_check(t_map *map, char *line)
 	}
 }
 
-void	map_dub(char *file_name, t_map *map)
-{
-
-}
 
 void file_parsing(char *file_name, t_map *map)
 {
@@ -207,5 +189,5 @@ void file_parsing(char *file_name, t_map *map)
 	close (fd);
 	map->ret = 1;
 	//ft_fill_map(line, map, file_name);
-	close (fd);
+
 }
