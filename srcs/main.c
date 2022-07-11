@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:43:49 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/05 21:44:31 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/11 21:07:35 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ int	main(int argc, char **argv)
 	if (argc == 2 && file_name_check(argv[1]))
 	{
 		file_parsing(argv[1], &mlx.map);
+		mlx.mlx = mlx_init();
+		if (!mlx.mlx)
+			ft_exit("mlx_init() fail\n");
+		mlx.win = mlx_new_window(mlx.mlx, SCWIDTH, SCHEIGHT, "cub3D");	
+		if (!mlx.win)
+			ft_exit("init_window fail\n");
+		
 		// ft_start_game(&mlx);
 		// mlx_hook(mlx.mlx_win, 2, 0, &key_function, &mlx);
 		// mlx_hook(mlx.mlx_win, 17, 0, &exit_game, &mlx);

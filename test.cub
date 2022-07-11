@@ -1,7 +1,7 @@
-NO ./img/door.xpm
-SO ./img/link.xpm
-WE ./img/key.xpm
-EA ./img/wall.xpm
+NO ./img/bluestone.xpm
+SO ./img/colorstone.xpm
+WE ./img/eagle.xpm
+EA ./img/greystone.xpm
 
 C 0,0,0
 F 	250,   33, 255
