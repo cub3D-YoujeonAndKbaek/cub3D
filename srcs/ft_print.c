@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:43:46 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/05 21:43:47 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/12 21:19:47 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	print_struct(t_map *map)
 	printf("map start point %d\n", map->start);
 	printf("map width %d\n", map->width);
 	printf("map height %d\n", map->height);
+
 	while (map->map[i])
 	{
 		j = 0;
@@ -38,7 +39,7 @@ void	print_struct(t_map *map)
 			printf("%c", map->map[i][j]);
 			j++;
 		}
-		printf("\n");
+		printf("]\n");
 		i++;
 	}
 	printf("x = %f, y = %f, status = %d\n", map->player.x, map->player.y, map->player.status);

@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:43:49 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/11 21:07:35 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/12 21:37:20 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,18 +118,30 @@ int	image_load(t_mlx *mlx)
 
 int	set_player(t_player *pl)
 {
+
+
 	pl->dirX = 0;
 	pl->dirY = 0;
 	if (pl->status == N)
-		pl->dirY = 1;
-	else if (pl->status == S)
+	{
 		pl->dirY = -1;
+		pl->planeX = 0.66;
+	}
+	else if (pl->status == S)
+	{
+		pl->dirY = 1;
+		pl->planeX = -0.66;	
+	}
 	else if (pl->status == W)
+	{
 		pl->dirX = -1;
+		pl->planeY = -0.66;
+	}
 	else
+	{
 		pl->dirX = 1;
-	pl->planeX = 0.0;
-	pl->planeY = 0.66;
+		pl->planeY = 0.66;
+	}
 	pl->moveSpeed = 0.05;
 	pl->rotSpeed = 0.05;
 }
@@ -261,6 +273,7 @@ void	calc(t_mlx *info)
 			sideDistY = (mapY + 1.0 - info->map.player.y) * deltaDistY;
 		}
 
+
 		while (hit == 0)
 		{
 			//jump to next map square, OR in x-direction, OR in y-direction
@@ -277,7 +290,10 @@ void	calc(t_mlx *info)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			if (info->map.map[mapY][mapX] > 0) hit = 1;
+			printf("map x = %d player x = %f\n", mapX, info->map.player.x);
+			printf("map y = %d player y = %f\n", mapY, info->map.player.y);
+			if (info->map.map[mapY][mapX] == '1')
+				hit = 1;
 		}
 		// printf("map x = %d player x = %f\n", mapX, info->map.player.x);
 		// printf("map y = %d player y = %f\n", mapY, info->map.player.y);
@@ -383,10 +399,11 @@ int	main(int argc, char **argv)
 		mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img, &mlx.img.bpp, &mlx.img.line_size, &mlx.img.endian);
 		// mlx_hook(mlx.mlx_win, 2, 0, &key_function, &mlx);
 		// mlx_hook(mlx.mlx_win, 17, 0, &exit_game, &mlx);
-		mlx.map.player.x = 1.5;
-		mlx.map.player.y = 1.5;
+		// mlx.map.player.x = 1.5;
+		// mlx.map.player.y = 1.5;
 		// info.posX = 22.0;
 		// info.posY = 11.5;
+		print_struct(&mlx.map);
 		mlx_loop_hook(mlx.mlx, &main_loop, &mlx);
 		mlx_loop(mlx.mlx);
 	}
