@@ -87,15 +87,17 @@ typedef struct s_img
 	int			line_size;
 	int			endian;
 	int			**arr_img;
-	int			buffer[SCHEIGHT][SCWIDTH];
+	int			img_width;
+	int			img_height;
+	int			buffer[480][640];
 }			t_img;
 
 typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;
-	t_map		*map;
-	t_img		*img;
+	t_map		map;
+	t_img		img;
 }			t_mlx;
 
 //main.c

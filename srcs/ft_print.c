@@ -41,7 +41,7 @@ void	print_struct(t_map *map)
 		printf("\n");
 		i++;
 	}
-	printf("x = %d, y = %d, status = %d\n", map->player.x, map->player.y, map->player.status);
+	printf("x = %f, y = %f, status = %d\n", map->player.x, map->player.y, map->player.status);
 	printf("done\n");
 
 }
