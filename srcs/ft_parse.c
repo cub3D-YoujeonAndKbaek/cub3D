@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:43:42 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/05 21:51:57 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/11 20:26:27 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,8 +198,7 @@ void	file_parsing(char *file_name, t_map *map)
 		line = NULL;
 	}
 	map_dub(file_name, map);
-	print_struct(map);
+	// print_struct(map);
 	close (fd);
 	map->ret = 1;
-	//ft_fill_map(line, map, file_name);
 }

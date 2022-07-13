@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:43:40 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/05 22:03:44 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/12 21:30:54 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	set_player_pos(t_map *map, char **str)
 			{
 				map->player.y = i;
 				map->player.x = j;
+				map->map[(int)i][(int)j] = '0';
 			}
 			j++;
 		}

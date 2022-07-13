@@ -6,7 +6,7 @@
 #    By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:57:48 by kbaek             #+#    #+#              #
-#    Updated: 2022/07/05 21:00:55 by kbaek            ###   ########.fr        #
+#    Updated: 2022/07/13 14:45:56 by kbaek            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS	= main.c \
 			ft_initialization.c \
 			ft_print.c \
 			ft_map_dup.c \
+			ft_hook.c \
 
 
 ALLSRCS	= $(addprefix $(SRCS_DIR), $(SRCS))
