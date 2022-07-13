@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:43:49 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/12 21:37:20 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/13 14:45:41 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	image_init(t_img *img)
 {
 	int	i;
 	int j;
-
+	
+	initialization_img(img);
 	i = 0;
 	while (i < SCHEIGHT)
 	{
@@ -116,10 +117,8 @@ int	image_load(t_mlx *mlx)
 	}
 }
 
-int	set_player(t_player *pl)
+int	player_init(t_player *pl)
 {
-
-
 	pl->dirX = 0;
 	pl->dirY = 0;
 	if (pl->status == N)
@@ -144,13 +143,6 @@ int	set_player(t_player *pl)
 	}
 	pl->moveSpeed = 0.05;
 	pl->rotSpeed = 0.05;
-}
-
-int	start_game(t_mlx *mlx)
-{
-	image_init(&mlx->img);
-	image_load(mlx);
-	set_player(&mlx->map.player);
 }
 
 void	drow_floor(t_mlx *info)
@@ -378,6 +370,22 @@ int	main_loop(t_mlx *mlx)
 	return (0);
 }
 
+int	start_game(t_mlx *mlx)
+{
+	image_init(&mlx->img);
+	image_load(mlx);
+	player_init(&mlx->map.player);
+}
+
+int start_mlx(t_mlx *mlx)
+{
+	mlx->mlx = mlx_init();
+	if (!mlx->mlx)
+		ft_exit("mlx_init() fail\n");
+	mlx->win = mlx_new_window(mlx->mlx, SCWIDTH, SCHEIGHT, "cub3D");	
+	if (!mlx->win)
+		ft_exit("init_window fail\n");
+}
 
 int	main(int argc, char **argv)
 {
@@ -388,22 +396,17 @@ int	main(int argc, char **argv)
 	if (argc == 2 && file_name_check(argv[1]))
 	{
 		file_parsing(argv[1], &mlx.map);
-		mlx.mlx = mlx_init();
-		if (!mlx.mlx)
-			ft_exit("mlx_init() fail\n");
-		mlx.win = mlx_new_window(mlx.mlx, SCWIDTH, SCHEIGHT, "cub3D");	
-		if (!mlx.win)
-			ft_exit("init_window fail\n");
+		start_mlx(&mlx);
 		start_game(&mlx);
 		mlx.img.img = mlx_new_image(mlx.mlx, SCWIDTH, SCHEIGHT);
 		mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img, &mlx.img.bpp, &mlx.img.line_size, &mlx.img.endian);
-		// mlx_hook(mlx.mlx_win, 2, 0, &key_function, &mlx);
-		// mlx_hook(mlx.mlx_win, 17, 0, &exit_game, &mlx);
 		// mlx.map.player.x = 1.5;
 		// mlx.map.player.y = 1.5;
 		// info.posX = 22.0;
 		// info.posY = 11.5;
 		print_struct(&mlx.map);
+		mlx_hook(mlx.win, 17, 0, &exit_game, &mlx);
+		//mlx_hook(mlx.win, 2, 0, &key_loop, &mlx);
 		mlx_loop_hook(mlx.mlx, &main_loop, &mlx);
 		mlx_loop(mlx.mlx);
 	}

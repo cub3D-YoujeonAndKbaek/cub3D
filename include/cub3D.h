@@ -106,6 +106,7 @@ void	ft_exit(char *ms);
 
 //ft_initialization.c
 void	initialization_map(t_map	*map);
+void	initialization_img(t_img *img);
 
 //ft_parse.c
 void	file_parsing(char *file_name, t_map *map);
@@ -116,7 +117,9 @@ void	print_struct(t_map *map);
 //ft_map_dup.c
 void	map_dub(char *file_name, t_map *map);
 
-
+//ft_key_hook.c
+int	key_loop(int keycode, t_mlx *mlx);
+int	exit_game(t_mlx *mlx);
 
 
 #endif
