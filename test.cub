@@ -1,9 +1,9 @@
-NO ./img/door.xpm
-SO ./img/link.xpm
-WE ./img/key.xpm
-EA ./img/wall.xpm
+NO ./img/wall_n.xpm
+SO ./img/wall_s.xpm
+WE ./img/wall_w.xpm
+EA ./img/wall_e.xpm
 
-C 0,0,0
+C 1,0,0
 F 	250,   33, 255
 
 
