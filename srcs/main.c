@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:43:49 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/05 21:44:31 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/19 22:12:58 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,32 @@ int	file_name_check(char *fn)
 		return (0);
 }
 
+int	main_loop(t_info *info)
+{
+	paint_floor(info);
+	raycasting(info);
+	paint_img(info);
+	key_hook(info);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
-	t_mlx	mlx;
+	t_info	info;
 
 	if (argc == 2 && file_name_check(argv[1]))
 	{
-		file_parsing(argv[1], &mlx.map);
-		// ft_start_game(&mlx);
-		// mlx_hook(mlx.mlx_win, 2, 0, &key_function, &mlx);
-		// mlx_hook(mlx.mlx_win, 17, 0, &exit_game, &mlx);
-		// mlx_loop_hook(mlx.mlx, &keep_loop, &mlx);
-		// mlx_loop(mlx.mlx);
+		file_parsing(argv[1], &info);
+		start_game(&info);
+		info.img.img = mlx_new_image(info.mlx, SCWIDTH, SCHEIGHT);
+		info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp,
+				&info.img.line_size, &info.img.endian);
+		mlx_hook(info.win, 17, 0, &exit_game, &info);
+		mlx_hook(info.win, 2, 0, &key_press, &info);
+		mlx_hook(info.win, 3, 0, &key_release, &info);
+		mlx_loop_hook(info.mlx, &main_loop, &info);
+		mlx_loop(info.mlx);
 	}
 	else
 		ft_exit("you should check argvs\n");
-	// system("leaks cu3D > leak.txt");
 }

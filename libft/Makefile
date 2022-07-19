@@ -6,14 +6,14 @@
 #    By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/07 13:53:09 by kbaek             #+#    #+#              #
-#    Updated: 2022/07/05 20:59:28 by kbaek            ###   ########.fr        #
+#    Updated: 2022/07/19 22:21:49 by kbaek            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lib_k.a
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 AR = ar -rcs
 RM = rm -f
 
