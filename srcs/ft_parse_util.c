@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:33:11 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 15:52:02 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/19 22:21:19 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ int	set_rgb(char **line)
 
 	rt = ft_atoi(*line);
 	i = 1;
-	while (rt > i)
+	if (rt == 0)
+		(*line)++;
+	while (rt >= i)
 	{
 		(*line)++;
 		i *= 10;
 	}
-	while ((**line) && (!ft_strncmp(",", (*line), ft_strlen(*line))
-			|| ft_isspace(**line)))
+	while ((**line) && (ft_strncmp(",", (*line), 1) == 0 || ft_isspace(**line)))
 		(*line)++;
 	return (rt);
 }
@@ -78,7 +79,7 @@ void	color_check(t_map *map, char *line, char c)
 	}
 }
 
-char	*direction_deep_cheak(t_map *map, char *line)
+char	*direction_deep_cheak(char *line)
 {
 	int		fd;
 	char	*rt;
@@ -99,7 +100,7 @@ void	direction_check(t_map *map, char *line, char c)
 {
 	char	*tmp;
 
-	tmp = direction_deep_cheak(map, line);
+	tmp = direction_deep_cheak(line);
 	if (!tmp)
 		ft_exit("direction_check error");
 	if (c == 'N')

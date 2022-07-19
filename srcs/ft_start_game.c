@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:40:31 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 15:55:20 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/19 22:18:24 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	image_init(t_img *img)
 	i = 0;
 	while (i < 5)
 	{
-		img->arr_img[i] = (int *)malloc(sizeof(int) * texWidth * texHeight);
+		img->arr_img[i] = (int *)malloc(sizeof(int) * TEXWIDTH * TEXHEIGHT);
 		if (!img->arr_img[i])
 			ft_exit("image_init malloc error");
-		ft_memset(img->arr_img[i], 0, (sizeof(int) * texWidth * texHeight));
+		ft_memset(img->arr_img[i], 0, (sizeof(int) * TEXWIDTH * TEXHEIGHT));
 		i++;
 	}
 	return (0);
@@ -78,7 +78,7 @@ void	image_load(t_info *info)
 			path = info->map.no_path;
 		info->img.img = \
 			mlx_xpm_file_to_image(info->mlx, path, &info->img.w, &info->img.h);
-		if (info->img.w != texWidth || info->img.h != texHeight
+		if (info->img.w != TEXWIDTH || info->img.h != TEXHEIGHT
 			|| info->img.img == NULL)
 			ft_exit("image_load xpm file error");
 		info->img.data = (int *)mlx_get_data_addr(info->img.img, \

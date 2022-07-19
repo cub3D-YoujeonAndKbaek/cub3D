@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:49:51 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 16:19:25 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/19 21:27:31 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	key_hook_r(t_player *p)
 		- p->plane_y * sin(p->rot_speed);
 }
 
-void	key_press(int keycode, t_info *info)
+int	key_press(int keycode, t_info *info)
 {
 	if (keycode == K_W)
 		info->move.key_w = 1;
@@ -48,9 +48,10 @@ void	key_press(int keycode, t_info *info)
 		info->move.arr_l = 1;
 	if (keycode == K_ESC || keycode == 65307)
 		exit (0);
+	return (0);
 }
 
-void	key_release(int keycode, t_info *info)
+int	key_release(int keycode, t_info *info)
 {
 	if (keycode == K_W)
 		info->move.key_w = 0;
@@ -64,10 +65,12 @@ void	key_release(int keycode, t_info *info)
 		info->move.arr_r = 0;
 	if (keycode == K_AR_L)
 		info->move.arr_l = 0;
+	return (0);
 }
 
-void	exit_game(t_info *mlx)
+int	exit_game(t_info *mlx)
 {
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	exit (0);
+	return (0);
 }

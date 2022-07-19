@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 21:43:40 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 16:02:08 by kbaek            ###   ########.fr       */
+/*   Created: 2022/07/19 21:28:10 by kbaek             #+#    #+#             */
+/*   Updated: 2022/07/19 21:42:38 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ void	set_player_pos(t_player *p, char **str)
 			if (str[i][j] == 'W' || str[i][j] == 'E' || str[i][j] == 'S'
 				|| str[i][j] == 'N')
 			{
-				p->pos_y = i;
-				p->pos_x = j;
+				p->pos_y = i + 0.5;
+				p->pos_x = j + 0.5;
+				str[(int)i][(int)j] = '0';
 			}
 			j++;
 		}

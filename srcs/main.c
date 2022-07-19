@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:43:49 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 16:20:28 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/19 22:12:58 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ int	file_name_check(char *fn)
 		return (0);
 }
 
-void	main_loop(t_info *info)
+int	main_loop(t_info *info)
 {
 	paint_floor(info);
 	raycasting(info);
 	paint_img(info);
 	key_hook(info);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -62,11 +63,11 @@ int	main(int argc, char **argv)
 		info.img.img = mlx_new_image(info.mlx, SCWIDTH, SCHEIGHT);
 		info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp,
 				&info.img.line_size, &info.img.endian);
-		info_hook(info.win, 17, 0, &exit_game, &info);
-		info_hook(info.win, 2, 0, &key_press, &info);
-		info_hook(info.win, 3, 0, &key_release, &info);
-		info_loop_hook(info.mlx, &main_loop, &info);
-		info_loop(info.mlx);
+		mlx_hook(info.win, 17, 0, &exit_game, &info);
+		mlx_hook(info.win, 2, 0, &key_press, &info);
+		mlx_hook(info.win, 3, 0, &key_release, &info);
+		mlx_loop_hook(info.mlx, &main_loop, &info);
+		mlx_loop(info.mlx);
 	}
 	else
 		ft_exit("you should check argvs\n");

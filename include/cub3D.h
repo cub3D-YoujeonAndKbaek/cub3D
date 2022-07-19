@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   cub3D.h											:+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: kbaek <kbaek@student.42.fr>				+#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2022/07/05 21:39:28 by kbaek			 #+#	#+#			 */
-/*   Updated: 2022/07/05 21:41:45 by kbaek			###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/19 22:14:39 by kbaek             #+#    #+#             */
+/*   Updated: 2022/07/19 22:16:34 by kbaek            ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
@@ -25,12 +25,10 @@
 
 # define X_EVENT_KEY_PRESS	2
 # define X_EVENT_KEY_EXIT	17
-# define texWidth 64
-# define texHeight 64
-# define mapWidth 24
-# define mapHeight 24
-# define SCWIDTH 720
-# define SCHEIGHT 480
+# define TEXWIDTH 64
+# define TEXHEIGHT 64
+# define SCWIDTH 960
+# define SCHEIGHT 720
 
 # define K_W 13
 # define K_A 0
@@ -43,6 +41,8 @@
 # define W 2
 # define S 3
 # define N 4
+# define X 0
+# define Y 1
 
 typedef struct s_range
 {
@@ -57,7 +57,7 @@ typedef struct s_player
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
-	double 		dir_y;
+	double		dir_y;
 	double		plane_x;
 	double		plane_y;
 	double		move_speed;
@@ -96,12 +96,35 @@ typedef struct s_img
 typedef struct s_move
 {
 	int	key_w;
-	int key_s;
+	int	key_s;
 	int	key_a;
 	int	key_d;
 	int	arr_l;
 	int	arr_r;
 }			t_move;
+
+typedef struct s_ray
+{
+	int		map_x;
+	int		map_y;
+	double	raydir_x;
+	double	raydir_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	perpwalldist;
+	int		step_x;
+	int		step_y;
+	int		side;
+	int		tex_x;
+	int		tex_y;
+	int		line_h;
+	int		start;
+	int		end;
+	double	ratio;
+	double	texpos;
+}			t_ray;
 
 typedef struct s_info
 {
@@ -111,9 +134,8 @@ typedef struct s_info
 	t_img		img;
 	t_player	player;
 	t_move		move;
+	t_ray		ray;
 }			t_info;
-
-
 
 //main.c
 int		main(int argc, char **argv);
@@ -148,10 +170,16 @@ void	paint_floor(t_info *info);
 int		key_hook(t_info *info);
 
 //ft_key_action.c
-void		key_hook_l(t_player *p);
-void		key_hook_r(t_player *p);
-void		key_release(int keycode, t_info *info);
-void		key_press(int keycode, t_info *info);
-void	exit_game(t_info *mlx);
+void	key_hook_l(t_player *p);
+void	key_hook_r(t_player *p);
+int		key_release(int keycode, t_info *info);
+int		key_press(int keycode, t_info *info);
+int		exit_game(t_info *mlx);
+
+//ft_ray_init.c
+void	ray_init(t_info *info, int x);
+
+//ft_raycasting.c
+void	raycasting(t_info *info);
 
 #endif

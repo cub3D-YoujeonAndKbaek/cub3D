@@ -6,7 +6,7 @@
 #    By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:57:48 by kbaek             #+#    #+#              #
-#    Updated: 2022/07/19 16:14:43 by kbaek            ###   ########.fr        #
+#    Updated: 2022/07/19 22:20:44 by kbaek            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cu3D
 
 CC = gcc
 RM = rm -f
-CFLAGS = -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 
 INCS_DIR	= ./include/
@@ -35,6 +35,8 @@ SRCS	= main.c \
 			ft_key_hook.c \
 			ft_key_action.c \
 			ft_paint.c \
+			ft_raycasting.c \
+			ft_ray_init.c \
 			
 
 

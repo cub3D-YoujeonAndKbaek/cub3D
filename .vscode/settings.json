@@ -4,6 +4,7 @@
 		"exception": "c",
 		"initializer_list": "c",
 		"iterator": "c",
-		"memory": "c"
+		"memory": "c",
+		"ratio": "c"
 	}
 }
