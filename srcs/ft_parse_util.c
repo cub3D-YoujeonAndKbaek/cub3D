@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:33:11 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 22:21:19 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 14:39:49 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*direction_deep_cheak(char *line)
 		line++;
 	fd = open(line, O_RDONLY);
 	if (fd == -1)
-		ft_exit("texture errer");
+		ft_exit("texture error");
 	close(fd);
 	rt = ft_strdup(line);
 	return (rt);
