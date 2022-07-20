@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_paint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:32:09 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 21:32:10 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 15:36:05 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	paint_floor(t_info *info)
 {

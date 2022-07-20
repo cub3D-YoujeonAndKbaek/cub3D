@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 15:33:11 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/20 14:39:49 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 18:05:19 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	range_number_check(char *line)
 {
@@ -55,7 +55,7 @@ int	set_rgb(char **line)
 	return (rt);
 }
 
-void	color_check(t_map *map, char *line, char c)
+int	color_check(t_map *map, char *line, char c)
 {
 	t_range	rgb;
 
@@ -69,14 +69,17 @@ void	color_check(t_map *map, char *line, char c)
 	if (!(rgb.r >= 0 && rgb.r <= 255) || !(rgb.g >= 0 && rgb.g <= 255)
 		|| !(rgb.b >= 0 && rgb.b <= 255))
 		ft_exit("it is nor 0 ~ 255");
-	if (c == 'F')
+	if (c == 'F' && map->floor == -1)
 	{
 		map->floor = (rgb.r << 16 | rgb.g << 8 | rgb.b);
 	}
-	else if (c == 'C')
+	else if (c == 'C' && map->celling == -1)
 	{
 		map->celling = (rgb.r << 16 | rgb.g << 8 | rgb.b);
 	}
+	else
+		ft_exit("double F or C keyword error");
+	return (1);
 }
 
 char	*direction_deep_cheak(char *line)
@@ -96,19 +99,22 @@ char	*direction_deep_cheak(char *line)
 	return (rt);
 }
 
-void	direction_check(t_map *map, char *line, char c)
+int	direction_check(t_map *map, char *line, char c)
 {
 	char	*tmp;
 
 	tmp = direction_deep_cheak(line);
 	if (!tmp)
 		ft_exit("direction_check error");
-	if (c == 'N')
+	if (c == 'N' && map->no_path == NULL)
 		map->no_path = tmp;
-	else if (c == 'S')
+	else if (c == 'S' && map->so_path == NULL)
 		map->so_path = tmp;
-	else if (c == 'W')
+	else if (c == 'W' && map->we_path == NULL)
 		map->we_path = tmp;
-	else if (c == 'E')
+	else if (c == 'E' && map->ea_path == NULL)
 		map->ea_path = tmp;
+	else
+		ft_exit("double nswe keyword error");
+	return (1);
 }

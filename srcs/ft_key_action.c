@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:49:51 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 21:27:31 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 15:36:00 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	key_hook_l(t_player *p)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_initialization.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:43:35 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 21:38:50 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 15:35:56 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	initialization_map(t_map	*map)
 {

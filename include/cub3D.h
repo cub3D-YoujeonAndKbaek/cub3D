@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 22:14:39 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 22:16:34 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 18:03:44 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define TEXHEIGHT 64
 # define SCWIDTH 960
 # define SCHEIGHT 720
+# define WALLDIST 1.1
 
 # define K_W 13
 # define K_A 0
@@ -150,8 +151,8 @@ void	initialization_img(t_img *img);
 void	file_parsing(char *file_name, t_info *info);
 
 //ft_parse_util.c
-void	direction_check(t_map *map, char *line, char c);
-void	color_check(t_map *map, char *line, char c);
+int		direction_check(t_map *map, char *line, char c);
+int		color_check(t_map *map, char *line, char c);
 
 //ft_print.c
 void	print_struct(t_map *map);

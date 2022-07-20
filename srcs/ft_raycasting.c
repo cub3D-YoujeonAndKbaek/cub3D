@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:07:41 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 22:18:30 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 15:36:12 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	dda_calc(t_ray *ray, t_map *map)
 {

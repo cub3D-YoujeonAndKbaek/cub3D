@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_hook.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:48:37 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 21:38:03 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 17:18:56 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	key_hook_w(t_player *p, t_map *map)
 {
@@ -19,9 +19,9 @@ void	key_hook_w(t_player *p, t_map *map)
 
 	x_vec = p->dir_x * p->move_speed;
 	y_vec = p->dir_y * p->move_speed;
-	if (map->map[(int)(p->pos_y)][(int)(p->pos_x + x_vec * 1.1)] == '0')
+	if (map->map[(int)(p->pos_y)][(int)(p->pos_x + x_vec * WALLDIST)] == '0')
 		p->pos_x += x_vec;
-	if (map->map[(int)(p->pos_y + y_vec * 1.1)][(int)(p->pos_x)] == '0')
+	if (map->map[(int)(p->pos_y + y_vec * WALLDIST)][(int)(p->pos_x)] == '0')
 		p->pos_y += y_vec;
 }
 
@@ -32,9 +32,9 @@ void	key_hook_s(t_player *p, t_map *map)
 
 	x_vec = p->dir_x * p->move_speed;
 	y_vec = p->dir_y * p->move_speed;
-	if (map->map[(int)(p->pos_y)][(int)(p->pos_x - x_vec * 1.1)] == '0')
+	if (map->map[(int)(p->pos_y)][(int)(p->pos_x - x_vec * WALLDIST)] == '0')
 		p->pos_x -= x_vec;
-	if (map->map[(int)(p->pos_y - y_vec * 1.1)][(int)(p->pos_x)] == '0')
+	if (map->map[(int)(p->pos_y - y_vec * WALLDIST)][(int)(p->pos_x)] == '0')
 		p->pos_y -= y_vec;
 }
 
@@ -45,9 +45,9 @@ void	key_hook_a(t_player *p, t_map *map)
 
 	x_vec = p->dir_x * p->move_speed;
 	y_vec = p->dir_y * p->move_speed;
-	if (map->map[(int)(p->pos_y)][(int)(p->pos_x + y_vec * 1.1)] == '0')
+	if (map->map[(int)(p->pos_y)][(int)(p->pos_x + y_vec * WALLDIST)] == '0')
 		p->pos_x += y_vec;
-	if (map->map[(int)(p->pos_y - x_vec * 1.1)][(int)(p->pos_x)] == '0')
+	if (map->map[(int)(p->pos_y - x_vec * WALLDIST)][(int)(p->pos_x)] == '0')
 		p->pos_y -= x_vec;
 }
 
@@ -58,9 +58,9 @@ void	key_hook_d(t_player *p, t_map *map)
 
 	x_vec = p->dir_x * p->move_speed;
 	y_vec = p->dir_y * p->move_speed;
-	if (map->map[(int)(p->pos_y)][(int)(p->pos_x - y_vec * 1.1)] == '0')
+	if (map->map[(int)(p->pos_y)][(int)(p->pos_x - y_vec * WALLDIST)] == '0')
 		p->pos_x -= y_vec;
-	if (map->map[(int)(p->pos_y + x_vec * 1.1)][(int)(p->pos_x)] == '0')
+	if (map->map[(int)(p->pos_y + x_vec * WALLDIST)][(int)(p->pos_x)] == '0')
 		p->pos_y += x_vec;
 }
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_dup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:28:10 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/20 15:07:54 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 17:30:28 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	surround_wall_check(t_map *map, char **str)
 {
@@ -23,7 +23,8 @@ void	surround_wall_check(t_map *map, char **str)
 		j = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] == '0')
+			if (str[i][j] == '0' || str[i][j] == 'W' || str[i][j] == 'E'
+				|| str[i][j] == 'S' || str[i][j] == 'N')
 			{
 				if (i == 0 || j == 0 || i == map->height || !str[i][j + 1])
 					ft_exit("surround_wall_check no wall first or last");

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_start_game.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:40:31 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 22:18:24 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 17:28:40 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 int	image_init(t_img *img)
 {
@@ -93,6 +93,10 @@ void	player_init(t_player *pl)
 {
 	pl->dir_x = 0;
 	pl->dir_y = 0;
+	if (pl->status == 0)
+		ft_exit("player is not in map");
+	pl->dir_x = 1;
+	pl->plane_y = 0.66;
 	if (pl->status == N)
 	{
 		pl->dir_y = -1;
@@ -107,11 +111,6 @@ void	player_init(t_player *pl)
 	{
 		pl->dir_x = -1;
 		pl->plane_y = -0.66;
-	}
-	else
-	{
-		pl->dir_x = 1;
-		pl->plane_y = 0.66;
 	}
 	pl->move_speed = 0.05;
 	pl->rot_speed = 0.05;

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ray_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:25:25 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/19 22:12:42 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/20 15:36:10 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	sidedist_init(t_ray *ray, t_player *p)
 {
