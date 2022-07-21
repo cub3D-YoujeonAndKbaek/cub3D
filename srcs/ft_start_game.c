@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_start_game.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:40:31 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/20 17:28:40 by youjeon          ###   ########.fr       */
+/*   Updated: 2022/07/21 15:45:22 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,10 @@ void	image_load(t_info *info)
 		i++;
 	}
 }
-
 void	player_init(t_player *pl)
 {
 	pl->dir_x = 0;
 	pl->dir_y = 0;
-	if (pl->status == 0)
-		ft_exit("player is not in map");
-	pl->dir_x = 1;
-	pl->plane_y = 0.66;
 	if (pl->status == N)
 	{
 		pl->dir_y = -1;
@@ -105,12 +100,17 @@ void	player_init(t_player *pl)
 	else if (pl->status == S)
 	{
 		pl->dir_y = 1;
-		pl->plane_x = -0.66;
+		pl->plane_x = -0.66;	
 	}
 	else if (pl->status == W)
 	{
 		pl->dir_x = -1;
 		pl->plane_y = -0.66;
+	}
+	else
+	{
+		pl->dir_x = 1;
+		pl->plane_y = 0.66;
 	}
 	pl->move_speed = 0.05;
 	pl->rot_speed = 0.05;
