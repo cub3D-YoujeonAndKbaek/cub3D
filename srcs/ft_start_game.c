@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:40:31 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/21 15:45:22 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:47:24 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	image_load(t_info *info)
 		i++;
 	}
 }
+
 void	player_init(t_player *pl)
 {
 	pl->dir_x = 0;
@@ -100,7 +101,7 @@ void	player_init(t_player *pl)
 	else if (pl->status == S)
 	{
 		pl->dir_y = 1;
-		pl->plane_x = -0.66;	
+		pl->plane_x = -0.66;
 	}
 	else if (pl->status == W)
 	{

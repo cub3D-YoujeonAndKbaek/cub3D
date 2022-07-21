@@ -6,7 +6,7 @@
 /*   By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:28:10 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/21 14:42:30 by kbaek            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:46:43 by kbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	map_dub(char *file_name, t_info *info)
 	if (info->map.start == 0)
 		ft_exit("map not found error");
 	if (info->player.status == 0)
- 		ft_exit("player not found error");
+		ft_exit("player not found error");
 	info->map.height = info->map.mcount - info->map.start;
 	tmp = (char **)malloc(sizeof(char *) * (info->map.height + 2));
 	if (!tmp)
