@@ -1,154 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 21:43:42 by kbaek             #+#    #+#             */
+/*   Updated: 2022/07/20 18:05:05 by youjeon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
-void	print_struct(t_map *map)
+int	set_player_dir(char c)
 {
-	printf("no_path %s\n", map->no_path);
-	printf("so_path %s\n", map->so_path);
-	printf("we_path %s\n", map->we_path);
-	printf("ea_path %s\n", map->ea_path);
-
-	printf("map->floor %x\n", map->floor);
-	printf("map->celling %x\n", map->celling);
-}
-
-
-int ft_isspace(char c)
-{
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (1);
+	if (c == 'W')
+		return (W);
+	else if (c == 'N')
+		return (N);
+	else if (c == 'S')
+		return (S);
+	else if (c == 'E')
+		return (E);
 	return (0);
 }
 
-int		deep_cheak(t_map *map, char *line, char **tmp)
+void	map_check(t_map *map, t_player *p, char *line)
 {
-	line += 2;
-	while (ft_isspace(*line))
-		line++;
-	int fd;
-	fd = open(line, O_RDONLY);
-	if (fd == -1)
-		ft_exit("texture errer");
-	close(fd);
-	*tmp = ft_strdup(line);
-}
-
-void	direction_check(t_map *map, char *line, char c)
-{
-
-	char *tmp;
-
-	if (c == 'N')
-	{
-		if (deep_cheak(map, line, &tmp))
-			map->no_path = tmp;
-	}
-	else if (c == 'S')
-	{
-		if (deep_cheak(map, line, &tmp))
-			map->so_path = tmp;
-	}
-	else if (c == 'W')
-	{
-		if (deep_cheak(map, line, &tmp))
-			map->we_path = tmp;
-	}
-	else if (c == 'E')
-	{
-		if (deep_cheak(map, line, &tmp))
-			map->ea_path = tmp;
-	}
-}
-
-void	range_number_check(char *line)
-{
-	int i;
+	int		i;
+	char	c;
 
 	i = 0;
-	if (!ft_isdigit(*line))
-		ft_exit("rgb digit error");
-	while(*line)
+	while (line[i])
 	{
-		if (*line == ',')
+		c = line[i];
+		if (!(c == ' ') && c != '0' && c != '1' && c != 'W'
+			&& c != 'N' && c != 'S' && c != 'E')
+			ft_exit("map argv error");
+		else if (c == 'W' || c == 'N' || c == 'S' || c == 'E')
 		{
-			i++;
-			line++;
-			while(ft_isspace(*line))
-				line++;
+			if (p->status != 0)
+				ft_exit("its more than one player error");
+			p->status = set_player_dir(c);
 		}
-		if (!ft_isdigit(*line))
-			ft_exit("rgb error");
-		line++;
+		i++;
 	}
-	if (i != 2)
-		ft_exit("range error");
+	if (map->width < i)
+		map->width = i;
+	if (map->start == 0)
+		map->start = map->mcount;
 }
 
-int set_rgb(char **line)
+int	file_check(t_map *map, t_player *p, char *line)
 {
-	int rt;
-	int i;
+	int	i;
+	int	rt;
 
-	rt = ft_atoi(*line);
-	i = 1;
-	while (rt > i)
+	i = 0;
+	rt = 0;
+	if (!ft_strncmp("NO ", line, 3) || !ft_strncmp("SO ", line, 3)
+		|| !ft_strncmp("WE ", line, 3) || !ft_strncmp("EA ", line, 3))
+		rt = direction_check(map, line, line[0]);
+	else if (!ft_strncmp("F ", line, 2) || !ft_strncmp("C ", line, 2))
+		rt = color_check(map, line, line[0]);
+	else if (line[0] == 0)
+		rt = 1;
+	while (ft_isspace(line[i]))
+		i++;
+	if (line[i] == '0' || line[i] == '1')
 	{
-		(*line)++;
-		i *= 10;
+		if (!map->no_path || !map->so_path || !map->we_path || !map->ea_path
+			|| (map->floor == -1) || (map->celling == -1))
+			ft_exit("something missing or file order is worng");
+		map_check(map, p, line);
+		rt = 1;
 	}
-	(*line)++;
-	while(!ft_strncmp(",", (*line), ft_strlen(*line)) || ft_isspace(**line))
-		(*line)++;
 	return (rt);
 }
 
-void	color_check(t_map *map, char *line, char c)
-{
-	t_range rgb;
-
-	line += 2;
-	while (ft_isspace(*line))
-		line++;
-	range_number_check(line);
-	rgb.r = set_rgb(&line);
-	rgb.g = set_rgb(&line);
-	rgb.b = set_rgb(&line);
-	if (!(rgb.r >= 0 && rgb.r <= 255) || !(rgb.g >= 0 && rgb.g <= 255)
-		|| !(rgb.b >= 0 && rgb.b <= 255))
-		ft_exit("it is nor 0 ~ 255");
-	if (c == 'F')
-	{
-		map->floor = (rgb.r << 16 | rgb.g << 8 | rgb.b);
-	}
-	else
-	{
-		map->celling = (rgb.r << 16 | rgb.g << 8 | rgb.b);
-	}
-}
-
-// void	map_check(t_map *map, char *line)
-// {
-	
-// }
-
-int	map_check(t_map *map, char *line)
-{
-	int i;
-
-	i = 0;
-	if (!ft_strncmp("NO ", line, 3) || !ft_strncmp("SO ", line, 3) 
-		|| !ft_strncmp("WE ", line, 3) || !ft_strncmp("EA ", line, 3))
-		direction_check(map, line, line[0]);
-	else if (!ft_strncmp("F ", line, 2) || !ft_strncmp("C ", line, 2))
-		color_check(map, line, line[0]);
-	while (ft_isspace(line[i]))
-		i++;
-	// if (line[i] == '0' || line[i] == '1')
-	// 	map_check(map, &line);
-	return (1);
-}
-
-void map_parsing(char *file_name, t_map *map)
+void	file_parsing(char *file_name, t_info *info)
 {
 	char	*line;
 	int		fd;
@@ -156,19 +86,20 @@ void map_parsing(char *file_name, t_map *map)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		ft_exit("file open error\n");
-	initialization_map(map);
-	while (map->ret == 1)
+	initialization_map(&info->map);
+	info->player.status = 0;
+	while (info->map.ret == 1)
 	{
-		map->ret = ft_get_next_line(fd, &line);
-		if (map->ret == -1)
-			ft_exit("error");
-		map_check(map, line);
+		info->map.ret = ft_get_next_line(fd, &line);
+		if (info->map.ret == -1)
+			ft_exit("gnl error");
+		info->map.mcount += 1;
+		if (file_check(&info->map, &info->player, line) == 0)
+			ft_exit("wrong keyword inside error");
 		free(line);
 		line = NULL;
 	}
-	print_struct(map);
-	close (fd);
-	map->ret = 1;
-	//ft_fill_map(line, map, file_name);
-	close (fd);
+	map_dub(file_name, info);
+	close(fd);
+	info->map.ret = 1;
 }

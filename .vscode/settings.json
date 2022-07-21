@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"libft.h": "c",
+		"exception": "c",
+		"initializer_list": "c",
+		"iterator": "c",
+		"memory": "c",
+		"ratio": "c"
+	}
+}

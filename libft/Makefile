@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: kbaek <kbaek@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/09/07 13:53:09 by kbaek             #+#    #+#              #
-#    Updated: 2021/09/19 17:36:19 by kbaek            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 NAME = lib_k.a
 
@@ -34,7 +23,9 @@ LIBFT_SRCS = ft_bzero.c \
 		ft_strncmp.c \
 		ft_strnstr.c \
 		ft_strrchr.c \
+		ft_strcpy.c \
 		ft_atoi.c \
+		ft_isspace.c \
 		ft_isalpha.c \
 		ft_isdigit.c \
 		ft_isalnum.c \

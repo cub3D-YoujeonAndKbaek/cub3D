@@ -1,27 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_initialization.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 21:43:35 by kbaek             #+#    #+#             */
+/*   Updated: 2022/07/20 15:35:56 by youjeon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	initialization_map(t_map	*map)
 {
+	map->no_path = NULL;
+	map->so_path = NULL;
+	map->we_path = NULL;
+	map->ea_path = NULL;
+	map->floor = -1;
+	map->celling = -1;
+	map->map = NULL;
+	map->height = 0;
+	map->width = 0;
+	map->mcount = 0;
+	map->start = 0;
+	map->ret = 1;
+}
 
+void	initialization_img(t_img *img)
+{
+	img->img = NULL;
+	img->data = NULL;
+	img->bpp = 0;
+	img->line_size = 0;
+	img->endian = 0;
+	img->arr_img = NULL;
+}
 
-
-	map->no_path = 0;
-	map->so_path = 0;
-	map->we_path = 0;
-	map->ea_path = 0;
-	map->floor	 = 0;
-	map->celling = 0;
-	// map->floor->r = 0;
-	// t_range		celling;	
-
-	// char		**map;
-	// map->width = 0;
-	// map->height = 0;
-	// map->mcount = 0;
-	 map->ret = 1;
-	// map->p = 0;
-	// map->c = 0;
-	// map->e = 0;
-	// map->arr = 0;
+void	initialization_move(t_move *move)
+{
+	move->key_w = 0;
+	move->key_a = 0;
+	move->key_s = 0;
+	move->key_d = 0;
+	move->arr_l = 0;
+	move->arr_r = 0;
 }
