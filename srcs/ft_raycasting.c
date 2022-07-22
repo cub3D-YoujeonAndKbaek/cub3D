@@ -6,7 +6,7 @@
 /*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:07:41 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/20 15:36:12 by youjeon          ###   ########.fr       */
+/*   Updated: 2022/07/23 00:12:02 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,31 @@ void	dda_calc(t_ray *ray, t_map *map)
 		ray->perpwalldist = ray->sidedist_y - ray->deltadist_y;
 }
 
+void	mapping_buff(t_ray *ray, t_player *p)
+{
+	double	wall;
+
+	if (ray->side == X)
+		wall = p->pos_y + (ray->perpwalldist * ray->raydir_y);
+	else
+		wall = p->pos_x + (ray->perpwalldist * ray->raydir_x);
+	wall = wall - floor(wall);
+	ray->tex_x = (int)(wall * (double)TEXWIDTH);
+	if (ray->side == X && ray->raydir_x < 0)
+		ray->tex_x = TEXWIDTH - ray->tex_x - 1;
+	if (ray->side == Y && ray->raydir_y > 0)
+		ray->tex_x = TEXWIDTH - ray->tex_x - 1;
+	ray->line_h = (int)(SCHEIGHT / ray->perpwalldist);
+	ray->start = SCHEIGHT / 2 - ray->line_h / 2;
+	ray->end = SCHEIGHT / 2 + ray->line_h / 2;
+	if (ray->start < 0)
+		ray->start = 0;
+	if (ray->end >= SCHEIGHT)
+		ray->end = SCHEIGHT;
+	ray->ratio = 1.0 * TEXHEIGHT / ray->line_h;
+	ray->texpos = (ray->start - SCHEIGHT / 2 + ray->line_h / 2) * ray->ratio;
+}
+
 void	set_buff(t_ray *ray, t_img *img, int x)
 {
 	int		color;
@@ -67,31 +92,6 @@ void	set_buff(t_ray *ray, t_img *img, int x)
 		ray->texpos += ray->ratio;
 		y++;
 	}
-}
-
-void	mapping_buff(t_ray *ray, t_player *p)
-{
-	double	wall;
-
-	if (ray->side == X)
-		wall = p->pos_y + (ray->perpwalldist * ray->raydir_y);
-	else
-		wall = p->pos_x + (ray->perpwalldist * ray->raydir_x);
-	wall = wall - floor(wall);
-	ray->tex_x = (int)(wall * (double)TEXWIDTH);
-	if (ray->side == X && ray->raydir_x < 0)
-		ray->tex_x = TEXWIDTH - ray->tex_x - 1;
-	if (ray->side == Y && ray->raydir_y > 0)
-		ray->tex_x = TEXWIDTH - ray->tex_x - 1;
-	ray->line_h = (int)(SCHEIGHT / ray->perpwalldist);
-	ray->start = SCHEIGHT / 2 - ray->line_h / 2;
-	ray->end = SCHEIGHT / 2 + ray->line_h / 2;
-	if (ray->start < 0)
-		ray->start = 0;
-	if (ray->end >= SCHEIGHT)
-		ray->end = SCHEIGHT;
-	ray->ratio = 1.0 * TEXHEIGHT / ray->line_h;
-	ray->texpos = (ray->start - SCHEIGHT / 2 + ray->line_h / 2) * ray->ratio;
 }
 
 void	raycasting(t_info *info)
