@@ -6,7 +6,7 @@
 /*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:32:09 by kbaek             #+#    #+#             */
-/*   Updated: 2022/07/23 00:04:07 by youjeon          ###   ########.fr       */
+/*   Updated: 2022/07/23 01:00:12 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,18 @@ void	paint_floor(t_info *info)
 {
 	int	i;
 	int	j;
-	int	celling;
-	int	floor;
+	int	color;
 
 	i = 0;
-	celling = info->map.celling;
-	floor = info->map.floor;
 	while (i < SCHEIGHT / 2)
 	{
 		j = 0;
 		while (j < SCWIDTH)
 		{
-			info->img.buffer[i][j] = celling;
-			info->img.buffer[SCHEIGHT - i - 1][j] = floor;
+			color = info->map.celling;
+			info->img.buffer[i][j] = color;
+			color = info->map.floor;
+			info->img.buffer[SCHEIGHT - i - 1][j] = color;
 			j++;
 		}
 		i++;
