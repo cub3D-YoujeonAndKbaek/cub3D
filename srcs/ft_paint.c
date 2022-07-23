@@ -16,18 +16,19 @@ void	paint_floor(t_info *info)
 {
 	int	i;
 	int	j;
-	int	color;
+	int	celling;
+	int	floor;
 
 	i = 0;
+	celling = info->map.celling;
+	floor = info->map.floor;
 	while (i < SCHEIGHT / 2)
 	{
 		j = 0;
 		while (j < SCWIDTH)
 		{
-			color = info->map.celling;
-			info->img.buffer[i][j] = color;
-			color = info->map.floor;
-			info->img.buffer[SCHEIGHT - i - 1][j] = color;
+			info->img.buffer[i][j] = celling;
+			info->img.buffer[SCHEIGHT - i - 1][j] = floor;
 			j++;
 		}
 		i++;
